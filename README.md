@@ -41,3 +41,31 @@ O SOAR é uma ferramenta de **monitoramento de rede local** que escaneia disposi
 ---
 
 ## Estrutura do Projeto
+
+soar-network-monitor/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+│
+├── docs/
+│   ├── arquitetura.md
+│   ├── roadmap.md
+│   ├── aprendizados/
+│
+├── src/
+│   ├── scanner/
+│   ├── database/
+│   ├── alerts/
+│   ├── network/
+│   ├── utils/
+│   ├── config/
+│   └── main.py
+│
+├── data/
+│   ├── database.db
+│   └── whitelist.json
+│
+├── tests/
+│
+└── logs/

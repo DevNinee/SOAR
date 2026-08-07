@@ -1,3 +1,5 @@
+from network.network_info import selecionar_interface
+
 #definir uma rede
 
 def solicitar_confirmação(rede):
@@ -27,4 +29,49 @@ autorizada = solicitar_confirmação(rede)
 
 if name == "__main__":
   main()
+
+def solicitar_confirmacao(rede: str) -> bool:
+    print(f"\nRede selecionada: {rede}")
+
+    resposta = input(
+        "Deseja iniciar o escaneamento? [s/N]: "
+    ).strip().lower()
+
+    return resposta in {"s", "sim"}
+
+
+def main() -> None:
+    print("=" * 55)
+    print("SOAR DE DISPOSITIVOS DE REDE LOCAL")
+    print("=" * 55)
+
+    interface = selecionar_interface()
+
+    if interface is None:
+        print("Não foi possível selecionar uma interface.")
+        return
+
+    print("\nInterface escolhida:")
+    print(f"Nome:     {interface.nome}")
+    print(f"IPv4:     {interface.ipv4}")
+    print(f"Máscara:  {interface.mascara}")
+    print(f"Rede:     {interface.rede}")
+
+    autorizado = solicitar_confirmacao(interface.rede)
+
+    if not autorizado:
+        print("Operação cancelada.")
+        return
+
+    print(
+        f"O escaneamento da rede {interface.rede} "
+        f"será iniciado pela interface {interface.nome}."
+    )
+
+    # O scanner ARP será chamado aqui futuramente.
+
+
+if __name__ == "__main__":
+    main()
+
 
